@@ -15,6 +15,8 @@ const request = (options: AxiosRequestConfig) => {
     // withCredentials: true, // send cookies when cross-domain requests
     timeout: 5000, // request timeout
     withCredentials: true,
+    baseURL:  import.meta.env.VITE_BASE_URL,
+    // baseURL??
   });
 
   // 请求拦截
@@ -22,6 +24,7 @@ const request = (options: AxiosRequestConfig) => {
       (config) => {
         // do something before request is sent
 
+        // 在请求前设置token
 /*        if (getToken() && config.headers) {
           // let each request carry token
           // please modify it according to the actual situation
@@ -55,7 +58,7 @@ const request = (options: AxiosRequestConfig) => {
         return res;
       },
       (error) => {
-        console.log(`err${error}`); // for debug
+        console.log(`err: ${error}`); // for debug
         return Promise.reject(error);
       }
   );
